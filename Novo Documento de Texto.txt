@@ -1,0 +1,32 @@
+** users
+
+id		- 
+name		- text
+email		- text
+password	- text
+role		- enum
+created_at	- timestamp
+
+----------------------------
+
+** dishes
+id		- 
+name		- text
+description	- text
+price		- text
+image		- text
+category	- text
+created_at	- timestamp
+updated_at	- timestamp
+
+user_id		- FK - users
+
+----------------------------
+
+** ingredients
+
+id		- 
+name		- text
+
+user_id		- FK - users
+dish_id		- FK - dishes
