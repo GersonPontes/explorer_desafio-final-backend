@@ -3,7 +3,60 @@ const knex = require("../database/knex");
 
 class DishesController {
   async index(request, response){
-    const dishes = await knex("dishes").orderBy("name");
+    const { category, search } = request.query;
+
+    let dishes;
+
+    if(category){
+      if(search){
+        dishes = await knex("ingredients")
+        .select([
+          "dishes.id",
+          "dishes.name",
+          "dishes.description",
+          "dishes.price",
+          "dishes.image",
+          "dishes.category"
+        ])
+        .where("dishes.category", category)
+        .whereLike("ingredients.name", `%${search}%`)
+        .innerJoin("dishes", "dishes.id", "ingredients.dish_id")
+        .orderBy("dishes.name");
+  
+        if(dishes == ""){
+          dishes = await knex("dishes")
+          .whereLike("name", `%${search}%`);
+        }
+  
+      }else{
+        dishes = await knex("dishes")
+        .where("category", category)
+        .orderBy("name")
+      };  
+    } else {
+      if(search){
+        dishes = await knex("ingredients")
+        .select([
+          "dishes.id",
+          "dishes.name",
+          "dishes.description",
+          "dishes.price",
+          "dishes.image",
+          "dishes.category"
+        ])
+        .whereLike("ingredients.name", `%${search}%`)
+        .innerJoin("dishes", "dishes.id", "ingredients.dish_id")
+        .orderBy("dishes.name");
+  
+        if(dishes == ""){
+          dishes = await knex("dishes")
+          .whereLike("name", `%${search}%`);
+        }
+  
+      }else{
+        dishes = await knex("dishes")
+      };
+    };
 
     return response.json(dishes);
   };
