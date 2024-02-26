@@ -17,7 +17,7 @@ exports.up = knex => knex.schema.createTable("dishes", table => {
   .enum("category", ["meal", "dessert", "drink"], { userNative:true, enumName: "categories" })
   .notNullable().default("meal");
   table
-  .integer("user_id").references("id").inTable("users")
+  .integer("user_id").references("id").inTable("users");
   table
   .timestamp("created_at").default(knex.fn.now());
   table

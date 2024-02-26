@@ -71,15 +71,13 @@ class DishesController {
 
     const ingredients = await knex("ingredients").where({ dish_id: dish_id }).orderBy("name");
 
-    console.log(ingredients)
-
     return response.json({ ...dish, ingredients });
   };
 
   async create(request, response) {
     const { name, description, price, image, category, ingredients } = request.body;
-    const { user_id } = request.params;
-
+    const user_id = request.user.id;
+    
     const user = await knex("users").where({ id: user_id }).first();
 
     if(!user) {
