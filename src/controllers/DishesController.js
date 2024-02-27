@@ -88,7 +88,7 @@ class DishesController {
       name: name,
       description: description,
       price: price,
-      image: image,
+      image: "image",
       category: category,
       user_id: user_id
     });
@@ -125,7 +125,7 @@ class DishesController {
       name: name,
       description: description,
       price: price,
-      image: image,
+      image: "image",
       category: category,
       updated_at: knex.fn.now()
     });
