@@ -25,7 +25,9 @@ class DishesController {
   
         if(dishes == ""){
           dishes = await knex("dishes")
-          .whereLike("name", `%${search}%`);
+          .where("category", category)
+          .whereLike("name", `%${search}%`)
+          .orderBy("name");
         }
   
       }else{
@@ -50,7 +52,8 @@ class DishesController {
   
         if(dishes == ""){
           dishes = await knex("dishes")
-          .whereLike("name", `%${search}%`);
+          .whereLike("name", `%${search}%`)
+          .orderBy("name");
         }
   
       }else{
