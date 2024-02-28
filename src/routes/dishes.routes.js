@@ -14,8 +14,8 @@ const dishesImgController = new DishesImgController();
 dishesRouter.get(("/"), dishesController.index);
 dishesRouter.get(("/:dish_id"), dishesController.show);
 dishesRouter.post(("/"), ensureAuthenticated, dishesController.create);
-dishesRouter.put(("/:dish_id"), dishesController.update);
+dishesRouter.put(("/:dish_id"), ensureAuthenticated, dishesController.update);
 dishesRouter.delete(("/:dish_id"), dishesController.delete);
-dishesRouter.patch("/:dish_id", ensureAuthenticated, upload.single("img"), dishesImgController.update);
+dishesRouter.patch("/:dish_id", ensureAuthenticated, upload.single("dishImg"), dishesImgController.update);
 
 module.exports = dishesRouter;

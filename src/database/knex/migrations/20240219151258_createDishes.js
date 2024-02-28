@@ -11,8 +11,7 @@ exports.up = knex => knex.schema.createTable("dishes", table => {
   .text("price")
   .notNullable();
   table
-  .text("image")
-  .notNullable();
+  .text("image");
   table
   .enum("category", ["meal", "dessert", "drink"], { userNative:true, enumName: "categories" })
   .notNullable().default("meal");

@@ -1,5 +1,6 @@
 const AppError = require("../utils/AppError");
 const knex = require("../database/knex");
+const DiskStorage = require("../providers/DiskStorage");
 
 class DishesController {
   async index(request, response){
@@ -21,18 +22,21 @@ class DishesController {
         .where("dishes.category", category)
         .whereLike("ingredients.name", `%${search}%`)
         .innerJoin("dishes", "dishes.id", "ingredients.dish_id")
+        .groupBy("dishes.id")
         .orderBy("dishes.name");
   
         if(dishes == ""){
           dishes = await knex("dishes")
           .where("category", category)
           .whereLike("name", `%${search}%`)
+          .groupBy("id")
           .orderBy("name");
         }
   
       }else{
         dishes = await knex("dishes")
         .where("category", category)
+        .groupBy("id")
         .orderBy("name")
       };  
     } else {
@@ -48,11 +52,13 @@ class DishesController {
         ])
         .whereLike("ingredients.name", `%${search}%`)
         .innerJoin("dishes", "dishes.id", "ingredients.dish_id")
+        .groupBy("dishes.id")
         .orderBy("dishes.name");
   
         if(dishes == ""){
           dishes = await knex("dishes")
           .whereLike("name", `%${search}%`)
+          .groupBy("id")
           .orderBy("name");
         }
   
@@ -78,7 +84,7 @@ class DishesController {
   };
 
   async create(request, response) {
-    const { name, description, price, image, category, ingredients } = request.body;
+    const { name, description, price, category, ingredients } = request.body;
     const user_id = request.user.id;
     
     const user = await knex("users").where({ id: user_id }).first();
@@ -91,7 +97,6 @@ class DishesController {
       name: name,
       description: description,
       price: price,
-      image: "image",
       category: category,
       user_id: user_id
     });
@@ -106,7 +111,7 @@ class DishesController {
 
     await knex("ingredients").insert(ingredientsInsert);
 
-    return response.status(201).json();
+    return response.status(201).json(dish_id);
   };
 
   async update(request, response) {
@@ -128,7 +133,6 @@ class DishesController {
       name: name,
       description: description,
       price: price,
-      image: "image",
       category: category,
       updated_at: knex.fn.now()
     });
