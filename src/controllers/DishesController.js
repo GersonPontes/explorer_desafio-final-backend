@@ -156,12 +156,15 @@ class DishesController {
   async delete(request, response) {
     const { dish_id } = request.params;
     const dish = await knex("dishes").where({ id: dish_id }).first();
+    const diskStorage = new DiskStorage();
 
     if(!dish) {
       throw new AppError("Prato não encontrado.");
     };
 
     await knex("dishes").where({ id: dish_id }).delete();
+
+    await diskStorage.deleteFile(dish.image);
 
     return response.json();
   };

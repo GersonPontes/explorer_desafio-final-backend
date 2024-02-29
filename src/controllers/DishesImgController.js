@@ -24,7 +24,7 @@ class DishesImgController {
     await knex("dishes").update(dish).where({ id: dish_id });
 
     return response.json(dish);
-  }
+  };
 };
 
 module.exports = DishesImgController;
