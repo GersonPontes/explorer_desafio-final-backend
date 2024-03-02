@@ -1,4 +1,5 @@
 require("express-async-errors");
+const cookieParser = require("cookie-parser");
 const AppError = require("./utils/AppError");
 const uploadConfig = require("./configs/upload");
 
@@ -9,8 +10,13 @@ const routes = require("./routes");
 const PORT = 3333;
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+  credentials: true
+}));
+
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 app.use(routes);
 
