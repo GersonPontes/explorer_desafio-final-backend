@@ -1,4 +1,5 @@
 require("express-async-errors");
+require("dotenv/config");
 const cookieParser = require("cookie-parser");
 const AppError = require("./utils/AppError");
 const uploadConfig = require("./configs/upload");
@@ -7,7 +8,7 @@ const express = require("express");
 const cors = require("cors");
 const routes = require("./routes");
 
-const PORT = 3333;
+const PORT = process.env.SERVER_PORT || 3333;
 
 const app = express();
 app.use(cookieParser());
