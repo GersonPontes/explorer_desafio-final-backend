@@ -40,6 +40,12 @@ Tecnologias utilizadas no projeto:
 git clone git@github.com:GersonPontes/explorer_desafio-final-backend.git
 ```
 
+#### Insira uma porta e um secret no arquivo .env vazio
+```bash
+AUTH_SECRET=
+PORT=
+```
+
 #### Instale as dependências do projeto
 ```bash
 npm install
