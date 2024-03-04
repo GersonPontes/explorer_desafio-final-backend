@@ -18,14 +18,18 @@ A aplicação é responsiva para a facilitar a sua visualização em computadore
 Tecnologias utilizadas no projeto:
 
 - Javascript
-- Css
-- ReactJs
-- Vite
-- Axios
-- React Icons
-- React Router Dom
-- Swiper
-- Styled Components
+- nodemon
+- bcryptjs
+- cookie-parser
+- cors
+- crypto
+- dotenv
+- express
+- express-async-errors
+- jsonwebtoken
+- knex
+- multer
+- sqlite
 
 ---
 
@@ -33,7 +37,7 @@ Tecnologias utilizadas no projeto:
 
 #### Clonagem: Primeiro, clone o repositório para seu ambiente:
 ```bash
-git clone git@github.com:GersonPontes/explorer_desafio-final-frontend.git
+git clone git@github.com:GersonPontes/explorer_desafio-final-backend.git
 ```
 
 #### Instale as dependências do projeto
@@ -41,21 +45,15 @@ git clone git@github.com:GersonPontes/explorer_desafio-final-frontend.git
 npm install
 ```
 
-#### Inicie o servidor do FrontEnd
+#### Inicie o servidor do BackEnd
 ```bash
 npm run dev
 ```
 
-#### O terminal irá exibir o endereço local onde a aplicação está sendo executada. Basta digitar o mesmo endereço em seu navegador. O endereço usado na criação do projeto foi:
-```bash
-http://localhost:5173/
-```
+#### FrontEnd
 
-#### Caso queira acessar a aplicação com uma conta Admin utilizando o login e senha abaixo:
-```bash
-  e-mail: joao@email.com
-  senha: 123
-```
+[acesse o github do FrontEnd clicando aqui](https://github.com/GersonPontes/explorer_desafio-final-frontend)
+
 
 ---
 
